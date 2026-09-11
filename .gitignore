@@ -1,0 +1,71 @@
+# ── Environment / secrets ─────────────────────────────────
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+*.env
+
+# ── OS generated ──────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ── Editor config ─────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.editorconfig
+
+# ── Node (if added later) ─────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# ── Build output (if added later) ─────────────────────────
+dist/
+build/
+.cache/
+.parcel-cache/
+
+# ── Logs ──────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Firebase (if added later) ─────────────────────────────
+.firebase/
+firebase-debug.log
+firestore-debug.log
+.firebaserc
+
+# ── Sensitive assets — NEVER commit these ─────────────────
+# Private keys, service accounts, API tokens
+*.pem
+*.key
+*.p12
+*.pfx
+service-account*.json
+*credentials*.json
+*secret*.json
+
+# ── Large source media files (commit optimised WebP only) ──
+# Uncomment if you have unoptimised originals:
+# assets/images/originals/
+# *.psd
+# *.ai
+# *.sketch
+
+# ── Temporary files ───────────────────────────────────────
+*.tmp
+*.temp
+.tmp/

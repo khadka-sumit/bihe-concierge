@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Outer ring -->
+  <circle cx="100" cy="100" r="96" stroke="#B9955A" stroke-width="0.6" opacity="0.5"/>
+  <!-- Second ring -->
+  <circle cx="100" cy="100" r="80" stroke="#B9955A" stroke-width="0.4" opacity="0.35"/>
+  <!-- Inner ring -->
+  <circle cx="100" cy="100" r="60" stroke="#B9955A" stroke-width="0.5" opacity="0.4"/>
+
+  <!-- 8 primary petals -->
+  <g stroke="#B9955A" stroke-width="0.5" opacity="0.45">
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(0 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(45 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(90 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(135 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(180 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(225 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(270 100 100)"/>
+    <ellipse cx="100" cy="52" rx="6" ry="16" transform="rotate(315 100 100)"/>
+  </g>
+
+  <!-- 16 secondary petals -->
+  <g stroke="#B9955A" stroke-width="0.4" opacity="0.28">
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(22.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(67.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(112.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(157.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(202.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(247.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(292.5 100 100)"/>
+    <ellipse cx="100" cy="60" rx="3.5" ry="12" transform="rotate(337.5 100 100)"/>
+  </g>
+
+  <!-- Corner dot accents on outer ring -->
+  <g fill="#B9955A" opacity="0.4">
+    <circle cx="100" cy="4" r="2"/>
+    <circle cx="196" cy="100" r="2"/>
+    <circle cx="100" cy="196" r="2"/>
+    <circle cx="4" cy="100" r="2"/>
+    <circle cx="171.4" cy="28.6" r="1.5"/>
+    <circle cx="171.4" cy="171.4" r="1.5"/>
+    <circle cx="28.6" cy="171.4" r="1.5"/>
+    <circle cx="28.6" cy="28.6" r="1.5"/>
+  </g>
+
+  <!-- Centre lotus -->
+  <circle cx="100" cy="100" r="8" stroke="#B9955A" stroke-width="0.5" fill="none" opacity="0.6"/>
+  <circle cx="100" cy="100" r="3" fill="#B9955A" opacity="0.5"/>
+</svg>

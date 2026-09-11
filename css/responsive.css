@@ -1,0 +1,361 @@
+/* ============================================================
+   BIHE CONCIERGE — RESPONSIVE STYLES
+   Breakpoints: 1280px, 1024px, 768px, 480px, 360px
+   ============================================================ */
+
+/* ── 1280px — Large laptop ──────────────────────────────── */
+
+@media (max-width: 1280px) {
+  :root {
+    --sidebar-width: 240px;
+    --content-max-width: 1040px;
+  }
+
+  .stage-layout {
+    grid-template-columns: 1fr 300px;
+    gap: var(--space-12);
+  }
+}
+
+/* ── 1024px — Laptop / iPad landscape ──────────────────── */
+
+@media (max-width: 1024px) {
+  :root {
+    --sidebar-width: 220px;
+  }
+
+  /* Narrow sidebar — hide descriptions */
+  .sidebar-step__desc {
+    display: none;
+  }
+
+  /* Collapse editorial right panel into below content */
+  .stage-layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .stage-editorial {
+    position: static;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .stage-editorial__img {
+    aspect-ratio: 3 / 4;
+    margin-bottom: 0;
+  }
+
+  /* Login: stack on laptop */
+  .login-page {
+    grid-template-columns: 45% 1fr;
+  }
+}
+
+/* ── 768px — Tablet portrait / Large mobile ─────────────── */
+
+@media (max-width: 768px) {
+
+  /* ── App shell: remove sidebar ── */
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-top-bar {
+    display: flex;
+  }
+
+  .app-shell {
+    flex-direction: column;
+  }
+
+  .app-content {
+    padding: var(--space-10) var(--space-6);
+  }
+
+  /* ── Login: single column ── */
+  .login-page {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .login-panel-left {
+    min-height: 45vh;
+    padding: var(--space-8) var(--space-8) var(--space-10);
+  }
+
+  .login-panel-left__tagline {
+    font-size: var(--text-2xl);
+  }
+
+  .login-panel-right {
+    padding: var(--space-10) var(--space-8);
+  }
+
+  .login-form-wrap {
+    max-width: 100%;
+  }
+
+  .login-heading {
+    font-size: var(--text-3xl);
+  }
+
+  /* ── Stage layout: single col ── */
+  .stage-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Move editorial above or below — hide on small tablets */
+  .stage-editorial {
+    display: none;
+  }
+
+  /* ── Form grid: single column ── */
+  .form-grid--2,
+  .form-grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .form-col-2 {
+    grid-column: span 1;
+  }
+
+  /* ── Stage headings ── */
+  .stage-heading__title {
+    font-size: var(--text-3xl);
+  }
+
+  /* ── Buttons: full width on mobile ── */
+  .stage-nav {
+    flex-direction: column-reverse;
+    gap: var(--space-4);
+  }
+
+  .stage-nav .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stage-nav__back {
+    text-align: center;
+    width: 100%;
+  }
+
+  /* ── Questionnaire ── */
+  .q-nav {
+    flex-direction: column-reverse;
+    gap: var(--space-4);
+  }
+
+  .q-nav .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #qBackBtn {
+    width: 100%;
+    text-align: center;
+    visibility: visible !important;
+  }
+
+  .questionnaire-complete div {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .questionnaire-complete .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Review stage ── */
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-pair[style*="span 2"] {
+    grid-column: span 1;
+  }
+
+  /* ── Confirmation timeline ── */
+  .confirmation-timeline {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── Journey strip ── */
+  .journey-steps {
+    flex-wrap: wrap;
+    gap: var(--space-8);
+  }
+
+  .journey-thread {
+    display: none;
+  }
+
+  .journey-step {
+    flex: 0 0 calc(33% - var(--space-4));
+  }
+
+  /* ── Upload cards: stack label and button ── */
+  .upload-card {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+
+  .upload-card__actions {
+    width: 100%;
+  }
+
+  .upload-card__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Modal ── */
+  .modal {
+    padding: var(--space-8) var(--space-6);
+    margin: var(--space-4);
+  }
+}
+
+/* ── 480px — Mobile ─────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  :root {
+    --section-padding-x: var(--space-5);
+  }
+
+  body {
+    font-size: var(--text-sm);
+  }
+
+  .app-content {
+    padding: var(--space-8) var(--space-5);
+  }
+
+  .stage-heading__title {
+    font-size: var(--text-2xl);
+  }
+
+  .stage-heading__subtitle {
+    font-size: var(--text-base);
+  }
+
+  .question-text {
+    font-size: var(--text-2xl);
+  }
+
+  .q-option {
+    font-size: var(--text-base);
+    padding: var(--space-4) var(--space-5);
+  }
+
+  /* Confirmation */
+  .confirmation-headline {
+    font-size: var(--text-2xl);
+  }
+
+  .confirmation-page {
+    padding: var(--space-10) var(--space-5);
+  }
+
+  /* Login */
+  .login-panel-left {
+    padding: var(--space-6) var(--space-5) var(--space-8);
+  }
+
+  .login-panel-right {
+    padding: var(--space-8) var(--space-5);
+  }
+
+  .login-heading {
+    font-size: var(--text-2xl);
+  }
+
+  /* Entry page */
+  .entry-headline {
+    font-size: var(--text-2xl);
+  }
+
+  .entry-cta-btn {
+    padding: 0 var(--space-8);
+    height: 52px;
+  }
+
+  /* Journey strip */
+  .journey-strip {
+    padding: var(--space-10) var(--space-5);
+  }
+
+  .journey-step {
+    flex: 0 0 calc(50% - var(--space-4));
+  }
+
+  /* Review summary */
+  .review-summary-block {
+    padding: var(--space-6);
+  }
+
+  /* Privacy panel */
+  .privacy-panel {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .privacy-panel__icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ── 360px — Small Android ──────────────────────────────── */
+
+@media (max-width: 360px) {
+  :root {
+    --section-padding-x: var(--space-4);
+  }
+
+  .app-content {
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .stage-heading__title {
+    font-size: var(--text-xl);
+  }
+
+  .question-text {
+    font-size: var(--text-xl);
+  }
+
+  .q-option {
+    font-size: var(--text-sm);
+  }
+
+  .btn {
+    height: 46px;
+    font-size: var(--text-xs);
+  }
+
+  .mobile-top-bar {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .journey-step {
+    flex: 0 0 100%;
+  }
+}
+
+/* ── Utility: hide on mobile ────────────────────────────── */
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 769px) {
+  .hide-desktop { display: none !important; }
+}

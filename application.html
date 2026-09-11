@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Application — Bihe Concierge</title>
+  <meta name="description" content="Complete your private matchmaking application with Bihe Concierge.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/application.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="paper-texture">
+
+<!-- Stage atmosphere overlay (shows between Stage 2 → 3) -->
+<div class="stage-overlay" id="stageOverlay" aria-hidden="true" role="status">
+  <div class="stage-overlay__ornament"></div>
+  <p class="stage-overlay__quote">
+    "Understanding the connection<br>beneath the details."
+  </p>
+  <p class="stage-overlay__sub">Compatibility Blueprint</p>
+</div>
+
+<!-- Page exit overlay -->
+<div class="page-exit-overlay" id="pageExitOverlay" aria-hidden="true"></div>
+
+<!-- Submit confirmation modal -->
+<div class="modal-backdrop" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal">
+    <div class="modal__ornament" aria-hidden="true">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin: 0 auto; display:block;">
+        <circle cx="16" cy="16" r="15" stroke="var(--color-burgundy)" stroke-width="1" opacity="0.4"/>
+        <path d="M10 16l4 4 8-8" stroke="var(--color-burgundy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h2 class="modal__title" id="modalTitle">Ready to begin?</h2>
+    <p class="modal__body">
+      Once submitted, your application will move to<br>
+      personal review by our team.
+    </p>
+    <div class="modal__actions">
+      <button class="btn btn--primary" id="confirmSubmitBtn">
+        <span class="btn__label">SUBMIT APPLICATION</span>
+        <span class="btn__spinner" aria-hidden="true"></span>
+      </button>
+      <button class="btn btn--ghost" id="cancelSubmitBtn">Not Yet</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!-- APP SHELL                                                  -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<div class="app-shell">
+
+  <!-- ── Mobile Top Bar ───────────────────────────────────── -->
+  <header class="mobile-top-bar" role="banner">
+    <div class="mobile-top-bar__logo">
+      <a href="index.html" class="bc-logo" aria-label="Bihe Concierge">
+        <span class="bc-logo__name" style="font-size: 1rem;">BIHE</span>
+      </a>
+    </div>
+    <div class="mobile-top-bar__progress-wrap">
+      <p class="mobile-top-bar__step-label" id="mobileStepLabel">Step 1 of 6</p>
+      <p class="mobile-top-bar__step-title" id="mobileStepTitle">About You</p>
+      <div class="mobile-top-bar__bar-wrap" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="6" aria-label="Application progress">
+        <div class="mobile-top-bar__bar-fill" id="mobileBarFill"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Left Sidebar ─────────────────────────────────────── -->
+  <aside class="sidebar" role="navigation" aria-label="Application stages">
+
+    <!-- Logo -->
+    <div class="sidebar__logo">
+      <a href="index.html" class="bc-logo" aria-label="Bihe Concierge home">
+        <svg class="bc-logo__ornament" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2 L13.8 8.2 L20 8.2 L14.9 12.1 L16.7 18.3 L12 14.4 L7.3 18.3 L9.1 12.1 L4 8.2 L10.2 8.2 Z" stroke="currentColor" stroke-width="1" fill="none"/>
+        </svg>
+        <span class="bc-logo__name">BIHE</span>
+        <span class="bc-logo__subtitle">CONCIERGE</span>
+      </a>
+    </div>
+
+    <p class="sidebar__tagline">
+      A private journey,<br>handled with care.
+    </p>
+
+    <p class="sidebar__journey-label" aria-hidden="true">Your Journey</p>
+
+    <!-- Step list -->
+    <div class="sidebar-steps" role="list">
+
+      <!-- Connecting line -->
+      <div class="sidebar-steps__track" aria-hidden="true"></div>
+      <div class="sidebar-steps__fill" id="sidebarFill" aria-hidden="true"></div>
+
+      <!-- Step 1 -->
+      <div class="sidebar-step is-active" role="listitem" tabindex="0" aria-label="Stage 1: About You" aria-current="step">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">01</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">01</p>
+          <p class="sidebar-step__title">About You</p>
+          <p class="sidebar-step__desc">Let's get to know you.</p>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="sidebar-step" role="listitem" tabindex="0" aria-label="Stage 2: Your Ideal Partner">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">02</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">02</p>
+          <p class="sidebar-step__title">Your Ideal Partner</p>
+          <p class="sidebar-step__desc">Who you're looking for.</p>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="sidebar-step" role="listitem" tabindex="0" aria-label="Stage 3: Compatibility Blueprint">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">03</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">03</p>
+          <p class="sidebar-step__title">Compatibility Blueprint</p>
+          <p class="sidebar-step__desc">Understanding how you connect.</p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="sidebar-step" role="listitem" tabindex="0" aria-label="Stage 4: Your World">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">04</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">04</p>
+          <p class="sidebar-step__title">Your World</p>
+          <p class="sidebar-step__desc">Values, family &amp; aspirations.</p>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="sidebar-step" role="listitem" tabindex="0" aria-label="Stage 5: Verification & Documents">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">05</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">05</p>
+          <p class="sidebar-step__title">Verification &amp; Documents</p>
+          <p class="sidebar-step__desc">Help us understand you better.</p>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="sidebar-step" role="listitem" tabindex="0" aria-label="Stage 6: Review & Submit">
+        <div class="sidebar-step__dot" aria-hidden="true">
+          <span class="sidebar-step__dot-num">06</span>
+          <svg class="sidebar-step__dot-check" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+            <polyline points="2,5 4.2,7.5 8,2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="sidebar-step__body">
+          <p class="sidebar-step__num-label">06</p>
+          <p class="sidebar-step__title">Review &amp; Submit</p>
+          <p class="sidebar-step__desc">Review your application.</p>
+        </div>
+      </div>
+
+    </div><!-- /sidebar-steps -->
+
+    <!-- Help footer -->
+    <div class="sidebar__footer">
+      <p class="sidebar__help-label label-overline">Need help?</p>
+      <p class="sidebar__help-label" style="margin-top: var(--space-1); font-size: var(--text-sm); color: rgba(246,240,231,0.35);">Our concierge is here.</p>
+      <a href="mailto:concierge@bihe.com.np" class="sidebar__help-email" aria-label="Email our concierge">
+        concierge@bihe.com.np
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- ── Main Application Area ──────────────────────────── -->
+  <main class="app-main" role="main">
+    <div class="app-content">
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 01 — ABOUT YOU                            -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section is-active" id="stage-1" aria-labelledby="s1-title">
+
+        <div class="stage-layout">
+          <div class="stage-form-area">
+
+            <!-- Heading -->
+            <div class="stage-heading reveal">
+              <span class="stage-heading__number">01</span>
+              <h1 class="stage-heading__title" id="s1-title">
+                About You
+              </h1>
+              <p class="stage-heading__subtitle">
+                Tell us about the person we'll have<br>the privilege of getting to know.
+              </p>
+              <p class="stage-heading__support">
+                A few details help us understand who you are beyond the profile.
+              </p>
+            </div>
+
+            <!-- Form -->
+            <form id="form-stage1" novalidate aria-label="About you form">
+
+              <div class="form-grid form-grid--2" style="margin-bottom: var(--space-6);">
+                <!-- Full Name -->
+                <div class="field form-col-2 reveal" data-delay="1">
+                  <label class="field__label field__label--required" for="s1-fullName">Full Name</label>
+                  <input class="field__input" type="text" id="s1-fullName" name="fullName"
+                    autocomplete="name" placeholder="As it appears on official documents"
+                    aria-required="true" aria-describedby="s1-fullNameError">
+                  <span class="field__error" id="s1-fullNameError" aria-live="polite"></span>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="field reveal" data-delay="2">
+                  <label class="field__label field__label--required" for="s1-dob">Date of Birth</label>
+                  <input class="field__input" type="date" id="s1-dob" name="dob"
+                    autocomplete="bday" aria-required="true" aria-describedby="s1-dobError">
+                  <span class="field__error" id="s1-dobError" aria-live="polite"></span>
+                </div>
+
+                <!-- Gender -->
+                <div class="field reveal" data-delay="2">
+                  <label class="field__label field__label--required" for="s1-gender">Gender</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s1-gender" name="gender"
+                      aria-required="true" aria-describedby="s1-genderError">
+                      <option value="" disabled selected>Select</option>
+                      <option value="man">Man</option>
+                      <option value="woman">Woman</option>
+                      <option value="non-binary">Non-binary</option>
+                      <option value="prefer-not-to-say">Prefer not to say</option>
+                    </select>
+                  </div>
+                  <span class="field__error" id="s1-genderError" aria-live="polite"></span>
+                </div>
+
+                <!-- City -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label field__label--required" for="s1-city">City</label>
+                  <input class="field__input" type="text" id="s1-city" name="city"
+                    autocomplete="address-level2" placeholder="Current city of residence"
+                    aria-required="true" aria-describedby="s1-cityError">
+                  <span class="field__error" id="s1-cityError" aria-live="polite"></span>
+                </div>
+
+                <!-- Country -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label" for="s1-country">Country</label>
+                  <input class="field__input" type="text" id="s1-country" name="country"
+                    autocomplete="country-name" placeholder="e.g. Nepal, United Kingdom...">
+                </div>
+
+                <!-- Nationality -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label" for="s1-nationality">Nationality</label>
+                  <input class="field__input" type="text" id="s1-nationality" name="nationality"
+                    autocomplete="off" placeholder="e.g. Nepali, British-Nepali...">
+                </div>
+
+                <!-- Profession -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label field__label--required" for="s1-profession">Profession</label>
+                  <input class="field__input" type="text" id="s1-profession" name="profession"
+                    autocomplete="organization-title" placeholder="Your current role or field"
+                    aria-required="true" aria-describedby="s1-professionError">
+                  <span class="field__error" id="s1-professionError" aria-live="polite"></span>
+                </div>
+
+                <!-- Education -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label field__label--required" for="s1-education">Highest Education</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s1-education" name="education"
+                      aria-required="true" aria-describedby="s1-educationError">
+                      <option value="" disabled selected>Select level</option>
+                      <option value="secondary">Secondary / High School</option>
+                      <option value="diploma">Diploma / Certificate</option>
+                      <option value="bachelors">Bachelor's Degree</option>
+                      <option value="masters">Master's Degree</option>
+                      <option value="phd">PhD / Doctorate</option>
+                      <option value="professional">Professional Degree (MD, JD, etc.)</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <span class="field__error" id="s1-educationError" aria-live="polite"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label field__label--required" for="s1-email">Email Address</label>
+                  <input class="field__input" type="email" id="s1-email" name="email"
+                    autocomplete="email" placeholder="your@email.com"
+                    aria-required="true" aria-describedby="s1-emailError">
+                  <span class="field__error" id="s1-emailError" aria-live="polite"></span>
+                </div>
+
+                <!-- Phone -->
+                <div class="field reveal" data-delay="6">
+                  <label class="field__label field__label--required" for="s1-phone">Contact Number</label>
+                  <input class="field__input" type="tel" id="s1-phone" name="phone"
+                    autocomplete="tel" placeholder="+977 98..."
+                    aria-required="true" aria-describedby="s1-phoneError">
+                  <span class="field__error" id="s1-phoneError" aria-live="polite"></span>
+                </div>
+
+                <!-- Story textarea -->
+                <div class="field form-col-2 reveal" data-delay="7">
+                  <label class="field__label" for="s1-story">What makes you completely you? <em style="font-style: italic; font-weight: 300; text-transform: none; letter-spacing: 0;">(Optional)</em></label>
+                  <textarea class="field__textarea" id="s1-story" name="story"
+                    rows="4" placeholder="Share your story — your passions, what drives you, what brings you joy..."></textarea>
+                </div>
+
+              </div><!-- /form-grid -->
+
+            </form>
+
+            <!-- Stage navigation -->
+            <div class="stage-nav reveal" data-delay="8">
+              <div></div><!-- spacer for alignment -->
+              <button class="btn btn--primary" onclick="nextStage()" aria-label="Continue to Your Ideal Partner">
+                <span class="btn__label">CONTINUE</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+          </div><!-- /stage-form-area -->
+
+          <!-- Editorial right panel -->
+          <div class="stage-editorial reveal-left">
+            <div class="stage-editorial__img img-cover img-placeholder-ivory data-parallax" data-parallax="0.06">
+              <img
+                src="assets/images/about-you.webp"
+                alt="Warm still life with ceramic vase and brass diya"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+            </div>
+            <div class="editorial-quote">
+              <p class="editorial-quote__text">
+                "Be authentic.<br>The right match<br>will appreciate<br>the real you."
+              </p>
+              <p class="editorial-quote__attr">Bihe Concierge</p>
+            </div>
+          </div>
+
+        </div><!-- /stage-layout -->
+
+      </section><!-- /stage-1 -->
+
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 02 — YOUR IDEAL PARTNER                   -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section" id="stage-2" aria-labelledby="s2-title">
+
+        <div class="stage-layout">
+          <div class="stage-form-area">
+
+            <div class="stage-heading reveal">
+              <span class="stage-heading__number">02</span>
+              <h2 class="stage-heading__title" id="s2-title">
+                Your Ideal<br>Partner
+              </h2>
+              <p class="stage-heading__subtitle">
+                Help us understand the kind of partnership<br>you hope to build.
+              </p>
+            </div>
+
+            <form id="form-stage2" novalidate aria-label="Ideal partner form">
+              <div class="form-grid" style="margin-bottom: var(--space-6);">
+
+                <!-- Important qualities -->
+                <div class="field reveal" data-delay="1">
+                  <label class="field__label field__label--required" for="s2-qualities">
+                    What are the most important qualities in a partner?
+                  </label>
+                  <textarea class="field__textarea" id="s2-qualities" name="qualities"
+                    rows="3" placeholder="Kindness, ambition, emotional maturity..."
+                    aria-required="true" aria-describedby="s2-qualitiesError"></textarea>
+                  <span class="field__error" id="s2-qualitiesError" aria-live="polite"></span>
+                </div>
+
+                <!-- Non-negotiable values -->
+                <div class="field reveal" data-delay="2">
+                  <label class="field__label" for="s2-values">What values are non-negotiable for you?</label>
+                  <textarea class="field__textarea" id="s2-values" name="values"
+                    rows="3" placeholder="Family, honesty, faith, ambition..."></textarea>
+                </div>
+
+                <!-- Age range -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label" for="s2-ageMin">Preferred Age Range</label>
+                  <div style="display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-3);">
+                    <input class="field__input" type="number" id="s2-ageMin" name="ageMin"
+                      placeholder="From" min="18" max="80" aria-label="Minimum age">
+                    <span style="color: var(--color-muted); font-size: var(--text-sm);">to</span>
+                    <input class="field__input" type="number" id="s2-ageMax" name="ageMax"
+                      placeholder="To" min="18" max="80" aria-label="Maximum age">
+                  </div>
+                </div>
+
+                <!-- Location preference -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label" for="s2-location">Location Preference</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s2-location" name="location">
+                      <option value="" disabled selected>Select preference</option>
+                      <option value="anywhere">Open to anywhere</option>
+                      <option value="same-city">Same city</option>
+                      <option value="same-country">Same country</option>
+                      <option value="international">International</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Education preference -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label" for="s2-education">Preferred Education</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s2-education" name="education">
+                      <option value="" disabled selected>Select level</option>
+                      <option value="any">Any level</option>
+                      <option value="bachelors">Bachelor's or above</option>
+                      <option value="masters">Master's or above</option>
+                      <option value="phd">PhD / Doctorate</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Profession preference -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label" for="s2-profession">Preferred Profession</label>
+                  <input class="field__input" type="text" id="s2-profession" name="profession"
+                    placeholder="Open to any, or specify...">
+                </div>
+
+                <!-- Relationship goal -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label field__label--required" for="s2-goal">Relationship Goals</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s2-goal" name="goal"
+                      aria-required="true" aria-describedby="s2-goalError">
+                      <option value="" disabled selected>What are you seeking?</option>
+                      <option value="marriage">Marriage</option>
+                      <option value="long-term">Long-term committed relationship</option>
+                      <option value="open">Open to discussion</option>
+                    </select>
+                  </div>
+                  <span class="field__error" id="s2-goalError" aria-live="polite"></span>
+                </div>
+
+                <!-- Lifestyle preference -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label" for="s2-lifestyle">Lifestyle Preference</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s2-lifestyle" name="lifestyle">
+                      <option value="" disabled selected>Select lifestyle</option>
+                      <option value="urban">Urban</option>
+                      <option value="balanced">Balanced</option>
+                      <option value="quiet">Quiet / Private</option>
+                      <option value="travel">Travel-oriented</option>
+                      <option value="family">Family-centered</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Additional notes -->
+                <div class="field reveal" data-delay="6">
+                  <label class="field__label" for="s2-notes">Anything else you'd like us to know? <em style="font-style:italic;font-weight:300;text-transform:none;">(Optional)</em></label>
+                  <textarea class="field__textarea" id="s2-notes" name="notes"
+                    rows="3" placeholder="Any other qualities, preferences, or context that matters to you..."></textarea>
+                </div>
+
+              </div>
+            </form>
+
+            <div class="stage-nav reveal" data-delay="7">
+              <button class="stage-nav__back" onclick="prevStage()" aria-label="Back to About You">
+                ← BACK
+              </button>
+              <button class="btn btn--primary" onclick="nextStage()" aria-label="Continue to Compatibility Blueprint">
+                <span class="btn__label">CONTINUE</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+          </div><!-- /stage-form-area -->
+
+          <!-- Editorial right panel -->
+          <div class="stage-editorial reveal-left">
+            <div class="stage-editorial__img img-cover img-placeholder-ivory" data-parallax="0.06">
+              <img
+                src="assets/images/ideal-partner.webp"
+                alt="Two hands holding ceramic tea cups in morning light"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+            </div>
+            <div class="editorial-quote">
+              <p class="editorial-quote__text">
+                "Every introduction begins<br>with intention."
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section><!-- /stage-2 -->
+
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 03 — COMPATIBILITY BLUEPRINT              -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section" id="stage-3" aria-labelledby="s3-title">
+
+        <div class="stage-layout" style="grid-template-columns: 1fr 320px;">
+          <div class="questionnaire-wrap">
+
+            <div class="stage-heading reveal">
+              <span class="stage-heading__number">03</span>
+              <h2 class="stage-heading__title" id="s3-title">
+                Compatibility<br>Blueprint
+              </h2>
+              <p class="stage-heading__subtitle">
+                A few questions to help us<br>understand how you love.
+              </p>
+              <p class="stage-heading__support">
+                There are no right or wrong answers.<br>Answer instinctively.
+              </p>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="questionnaire-progress reveal" data-delay="1">
+              <p class="questionnaire-progress__label" id="qProgressLabel" aria-live="polite">Question 1 of 10</p>
+              <div class="questionnaire-progress__bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="10" aria-label="Questionnaire progress">
+                <div class="questionnaire-progress__fill" id="qProgressFill"></div>
+              </div>
+            </div>
+
+            <!-- Question card -->
+            <div class="question-card reveal" id="questionCard" data-delay="2">
+              <p class="question-text" id="questionText"></p>
+              <div class="q-options-wrap" id="qOptionsWrap" role="group" aria-labelledby="questionText"></div>
+              <p class="field__error" id="q-error" aria-live="polite" style="margin-top: var(--space-2);"></p>
+            </div>
+
+            <!-- Q navigation -->
+            <div class="q-nav reveal" data-delay="3" id="qNavRow">
+              <button class="stage-nav__back" id="qBackBtn" aria-label="Previous question" style="visibility: hidden;">
+                ← BACK
+              </button>
+              <button class="btn btn--primary" id="qNextBtn" disabled aria-label="Next question">
+                NEXT →
+              </button>
+            </div>
+
+            <!-- Completion moment (hidden until done) -->
+            <div class="questionnaire-complete hidden" id="qCompletion">
+              <div class="check-circle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4,12 9,17 20,6"/>
+                </svg>
+              </div>
+              <h3 class="questionnaire-complete__title">
+                Thank you.
+              </h3>
+              <p class="questionnaire-complete__subtitle">
+                We are beginning to understand<br>how you connect.
+              </p>
+              <div style="display:flex; justify-content:center; gap: var(--space-4);">
+                <button class="stage-nav__back" onclick="prevStage()" aria-label="Back to Ideal Partner">
+                  ← BACK
+                </button>
+                <button class="btn btn--primary" id="qContinueBtn" aria-label="Continue to Your World">
+                  <span class="btn__label">CONTINUE</span>
+                  <span class="btn__arrow" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /questionnaire-wrap -->
+
+          <!-- Editorial right panel -->
+          <div class="stage-editorial reveal-left">
+            <div class="stage-editorial__img img-cover img-placeholder-ivory">
+              <img
+                src="assets/images/compatibility.webp"
+                alt="Intertwined ceremonial red thread"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+            </div>
+            <div class="editorial-quote">
+              <p class="editorial-quote__text" style="font-size: var(--text-xl);">
+                "Connection<br>is found in<br>the honest<br>answer."
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section><!-- /stage-3 -->
+
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 04 — YOUR WORLD                           -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section" id="stage-4" aria-labelledby="s4-title">
+
+        <div class="stage-layout">
+          <div class="stage-form-area">
+
+            <div class="stage-heading reveal">
+              <span class="stage-heading__number">04</span>
+              <h2 class="stage-heading__title" id="s4-title">
+                Your World
+              </h2>
+              <p class="stage-heading__subtitle">
+                Help us understand the world you've built<br>and the life you envision.
+              </p>
+            </div>
+
+            <form id="form-stage4" novalidate aria-label="Your world form">
+              <div class="form-grid" style="margin-bottom: var(--space-6);">
+
+                <!-- Family background -->
+                <div class="field reveal" data-delay="1">
+                  <label class="field__label field__label--required" for="s4-familyBg">Family Background</label>
+                  <textarea class="field__textarea" id="s4-familyBg" name="familyBg"
+                    rows="3" placeholder="Tell us a little about your family, its values and the culture you've grown up in..."
+                    aria-required="true" aria-describedby="s4-familyBgError"></textarea>
+                  <span class="field__error" id="s4-familyBgError" aria-live="polite"></span>
+                </div>
+
+                <!-- Family expectations -->
+                <div class="field reveal" data-delay="2">
+                  <label class="field__label" for="s4-familyExp">Family Expectations of Marriage</label>
+                  <textarea class="field__textarea" id="s4-familyExp" name="familyExp"
+                    rows="3" placeholder="What does your family envision for your future? How involved are they likely to be?"></textarea>
+                </div>
+
+                <!-- Faith -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label" for="s4-faith">Faith / Spirituality <em style="font-style:italic;font-weight:300;text-transform:none;">(Optional)</em></label>
+                  <input class="field__input" type="text" id="s4-faith" name="faith"
+                    placeholder="e.g. Hindu, Buddhist, non-religious, spiritual...">
+                </div>
+
+                <!-- Children -->
+                <div class="field reveal" data-delay="3">
+                  <label class="field__label" for="s4-children">Do you have / want children?</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s4-children" name="children">
+                      <option value="" disabled selected>Select</option>
+                      <option value="have-children">I have children</option>
+                      <option value="want-children">I want children</option>
+                      <option value="maybe">Maybe — open to it</option>
+                      <option value="prefer-not">Prefer not to have children</option>
+                      <option value="prefer-not-answer">Prefer not to answer</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 5-year vision -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label" for="s4-vision">Where do you see yourself in 5 years?</label>
+                  <textarea class="field__textarea" id="s4-vision" name="vision"
+                    rows="3" placeholder="Your aspirations — career, location, life stage, family..."></textarea>
+                </div>
+
+                <!-- Lifestyle -->
+                <div class="field reveal" data-delay="4">
+                  <label class="field__label field__label--required" for="s4-lifestyle">Your Lifestyle</label>
+                  <div class="field__select-wrap">
+                    <select class="field__select" id="s4-lifestyle" name="lifestyle"
+                      aria-required="true" aria-describedby="s4-lifestyleError">
+                      <option value="" disabled selected>How would you describe your life?</option>
+                      <option value="urban">Urban — city life, pace, culture</option>
+                      <option value="balanced">Balanced — comfortable mix</option>
+                      <option value="quiet">Quiet / Private — grounded, intentional</option>
+                      <option value="travel">Travel-oriented — explorer at heart</option>
+                      <option value="family">Family-centered — home is everything</option>
+                    </select>
+                  </div>
+                  <span class="field__error" id="s4-lifestyleError" aria-live="polite"></span>
+                </div>
+
+                <!-- Hobbies -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label" for="s4-hobbies">Hobbies &amp; Interests</label>
+                  <input class="field__input" type="text" id="s4-hobbies" name="hobbies"
+                    placeholder="Reading, hiking, cooking, music, travel...">
+                </div>
+
+                <!-- Career -->
+                <div class="field reveal" data-delay="5">
+                  <label class="field__label" for="s4-career">Career Ambitions</label>
+                  <input class="field__input" type="text" id="s4-career" name="career"
+                    placeholder="Where is your career heading?">
+                </div>
+
+                <!-- Family notes -->
+                <div class="field reveal" data-delay="6">
+                  <label class="field__label" for="s4-familyNotes">Something important about your family we should know? <em style="font-style:italic;font-weight:300;text-transform:none;">(Optional)</em></label>
+                  <textarea class="field__textarea" id="s4-familyNotes" name="familyNotes" rows="3"
+                    placeholder="Anything that would help us understand your family context..."></textarea>
+                </div>
+
+                <!-- Additional notes -->
+                <div class="field reveal" data-delay="7">
+                  <label class="field__label" for="s4-notes">Anything else you'd like to share? <em style="font-style:italic;font-weight:300;text-transform:none;">(Optional)</em></label>
+                  <textarea class="field__textarea" id="s4-notes" name="notes" rows="3"
+                    placeholder="Any other context that matters to you..."></textarea>
+                </div>
+
+              </div>
+            </form>
+
+            <div class="stage-nav reveal" data-delay="8">
+              <button class="stage-nav__back" onclick="prevStage()" aria-label="Back to Compatibility Blueprint">
+                ← BACK
+              </button>
+              <button class="btn btn--primary" onclick="nextStage()" aria-label="Continue to Verification">
+                <span class="btn__label">CONTINUE</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+          </div><!-- /stage-form-area -->
+
+          <!-- Editorial right panel -->
+          <div class="stage-editorial reveal-left">
+            <div class="stage-editorial__img img-cover img-placeholder-ivory" data-parallax="0.06">
+              <img
+                src="assets/images/your-world.webp"
+                alt="Sealed envelope with burgundy wax seal"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+            </div>
+            <div class="editorial-quote">
+              <p class="editorial-quote__text">
+                "We consider<br>the bigger picture<br>to find the right<br>match for your life,<br>not just right now."
+              </p>
+              <p class="editorial-quote__attr">Bihe Concierge</p>
+            </div>
+          </div>
+
+        </div>
+      </section><!-- /stage-4 -->
+
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 05 — VERIFICATION & DOCUMENTS             -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section" id="stage-5" aria-labelledby="s5-title">
+
+        <div class="stage-layout" style="grid-template-columns: 1fr 320px;">
+          <div class="stage-form-area">
+
+            <div class="stage-heading reveal">
+              <span class="stage-heading__number">05</span>
+              <h2 class="stage-heading__title" id="s5-title">
+                Verification<br>&amp; Documents
+              </h2>
+              <p class="stage-heading__subtitle">
+                These documents help us verify<br>and understand you better.
+              </p>
+              <p class="stage-heading__support">
+                All documents are reviewed personally by your dedicated consultant.<br>
+                Nothing is shared without your consent.
+              </p>
+            </div>
+
+            <!-- Upload Cards -->
+            <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);" aria-label="Document upload section">
+
+              <!-- Government ID -->
+              <div class="upload-card reveal" data-delay="1" data-doc-key="governmentId">
+                <div class="upload-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2"/><path d="M16 10a4 4 0 01-8 0"/>
+                  </svg>
+                </div>
+                <div class="upload-card__body">
+                  <p class="upload-card__title">Government ID</p>
+                  <p class="upload-card__formats">Citizenship Certificate or Passport · PDF, JPG, PNG</p>
+                  <div class="upload-card__status" aria-live="polite"></div>
+                </div>
+                <div class="upload-card__actions">
+                  <button type="button" class="btn btn--secondary upload-card__upload-btn" aria-label="Upload Government ID">Upload</button>
+                  <input type="file" class="upload-card__input" accept=".pdf,.jpg,.jpeg,.png" aria-label="Select government ID file">
+                </div>
+              </div>
+
+              <!-- Educational Certificates -->
+              <div class="upload-card reveal" data-delay="2" data-doc-key="educationCert">
+                <div class="upload-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                  </svg>
+                </div>
+                <div class="upload-card__body">
+                  <p class="upload-card__title">Educational Certificates</p>
+                  <p class="upload-card__formats">Degree, transcripts or certificates · PDF, JPG, PNG</p>
+                  <div class="upload-card__status" aria-live="polite"></div>
+                </div>
+                <div class="upload-card__actions">
+                  <button type="button" class="btn btn--secondary upload-card__upload-btn" aria-label="Upload Educational Certificate">Upload</button>
+                  <input type="file" class="upload-card__input" accept=".pdf,.jpg,.jpeg,.png" aria-label="Select education certificate file">
+                </div>
+              </div>
+
+              <!-- Income Proof (Optional) -->
+              <div class="upload-card reveal" data-delay="3" data-doc-key="incomeProof">
+                <div class="upload-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+                  </svg>
+                </div>
+                <div class="upload-card__body">
+                  <p class="upload-card__title">Income Proof <em style="font-style:italic;font-size:var(--text-sm);font-weight:300;">(Optional)</em></p>
+                  <p class="upload-card__formats">Salary slip, ITR, bank statement · PDF, JPG</p>
+                  <div class="upload-card__status" aria-live="polite"></div>
+                </div>
+                <div class="upload-card__actions">
+                  <button type="button" class="btn btn--ghost upload-card__upload-btn" aria-label="Upload Income Proof (optional)">Upload</button>
+                  <input type="file" class="upload-card__input" accept=".pdf,.jpg,.jpeg,.png" aria-label="Select income proof file">
+                </div>
+              </div>
+
+              <!-- Recent Photo -->
+              <div class="upload-card reveal" data-delay="4" data-doc-key="recentPhoto">
+                <div class="upload-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </div>
+                <div class="upload-card__body">
+                  <p class="upload-card__title">Recent Photo</p>
+                  <p class="upload-card__formats">Clear &amp; natural · JPG, PNG · Taken in last 6 months</p>
+                  <div class="upload-card__status" aria-live="polite"></div>
+                </div>
+                <div class="upload-card__actions">
+                  <button type="button" class="btn btn--secondary upload-card__upload-btn" aria-label="Upload Recent Photo">Upload</button>
+                  <input type="file" class="upload-card__input" accept=".jpg,.jpeg,.png,.webp" aria-label="Select recent photo file">
+                </div>
+              </div>
+
+              <!-- Other Documents (Optional) -->
+              <div class="upload-card reveal" data-delay="5" data-doc-key="otherDocuments">
+                <div class="upload-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                  </svg>
+                </div>
+                <div class="upload-card__body">
+                  <p class="upload-card__title">Other Documents <em style="font-style:italic;font-size:var(--text-sm);font-weight:300;">(Optional)</em></p>
+                  <p class="upload-card__formats">Any other supporting documents · PDF, JPG, PNG</p>
+                  <div class="upload-card__status" aria-live="polite"></div>
+                </div>
+                <div class="upload-card__actions">
+                  <button type="button" class="btn btn--ghost upload-card__upload-btn" aria-label="Upload other documents (optional)">Upload</button>
+                  <input type="file" class="upload-card__input" accept=".pdf,.jpg,.jpeg,.png" aria-label="Select other document file">
+                </div>
+              </div>
+
+            </div><!-- /upload cards -->
+
+            <!-- Privacy panel -->
+            <div class="privacy-panel reveal" data-delay="6">
+              <svg class="privacy-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                <path d="M7 11V7a5 5 0 0110 0v4"/>
+              </svg>
+              <div>
+                <p class="privacy-panel__title">Private &amp; Confidential</p>
+                <p class="privacy-panel__text">
+                  Your information is handled with the utmost care and discretion.
+                  Only your dedicated Relationship Consultant will personally review
+                  these documents. Nothing is shared with third parties without
+                  your explicit consent.
+                </p>
+              </div>
+            </div>
+
+            <div class="stage-nav reveal" data-delay="7">
+              <button class="stage-nav__back" onclick="prevStage()" aria-label="Back to Your World">
+                ← BACK
+              </button>
+              <button class="btn btn--primary" onclick="nextStage()" aria-label="Continue to Review">
+                <span class="btn__label">CONTINUE</span>
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+
+          </div><!-- /stage-form-area -->
+
+          <!-- Editorial right panel -->
+          <div class="stage-editorial reveal-left">
+            <div class="stage-editorial__img img-cover img-placeholder-ivory" data-parallax="0.06">
+              <img
+                src="assets/images/verification.webp"
+                alt="Luxury desk scene with cream documents and brass details"
+                loading="lazy"
+                onerror="this.style.display='none'"
+              >
+            </div>
+            <div class="editorial-quote">
+              <p class="editorial-quote__text" style="font-size: var(--text-xl);">
+                "Every application<br>is personally<br>reviewed."
+              </p>
+              <p class="editorial-quote__attr">Human-led · Research-informed</p>
+            </div>
+          </div>
+
+        </div>
+      </section><!-- /stage-5 -->
+
+
+      <!-- ════════════════════════════════════════════════ -->
+      <!-- STAGE 06 — REVIEW & SUBMIT                      -->
+      <!-- ════════════════════════════════════════════════ -->
+      <section class="stage-section" id="stage-6" aria-labelledby="s6-title">
+
+        <div style="max-width: 840px;">
+
+          <div class="stage-heading reveal">
+            <span class="stage-heading__number">06</span>
+            <h2 class="stage-heading__title" id="s6-title">
+              Review Your<br>Application
+            </h2>
+            <p class="stage-heading__subtitle">
+              Take a moment to review before you submit.
+            </p>
+          </div>
+
+          <!-- Stage completion checklist -->
+          <div class="review-stages-list reveal" data-delay="1" role="list" aria-label="Application stages completed">
+
+            <div class="review-item" role="listitem">
+              <div class="review-item__left">
+                <div class="review-item__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <polyline points="2,7 5.5,10.5 12,3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="review-item__label">About You</span>
+              </div>
+              <button class="review-item__edit" onclick="editStage(1)" aria-label="Edit About You section">Edit</button>
+            </div>
+
+            <div class="review-item" role="listitem">
+              <div class="review-item__left">
+                <div class="review-item__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <polyline points="2,7 5.5,10.5 12,3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="review-item__label">Your Ideal Partner</span>
+              </div>
+              <button class="review-item__edit" onclick="editStage(2)" aria-label="Edit Your Ideal Partner section">Edit</button>
+            </div>
+
+            <div class="review-item" role="listitem">
+              <div class="review-item__left">
+                <div class="review-item__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <polyline points="2,7 5.5,10.5 12,3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="review-item__label">Compatibility Blueprint</span>
+              </div>
+              <button class="review-item__edit" onclick="editStage(3)" aria-label="Edit Compatibility Blueprint section">Edit</button>
+            </div>
+
+            <div class="review-item" role="listitem">
+              <div class="review-item__left">
+                <div class="review-item__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <polyline points="2,7 5.5,10.5 12,3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="review-item__label">Your World</span>
+              </div>
+              <button class="review-item__edit" onclick="editStage(4)" aria-label="Edit Your World section">Edit</button>
+            </div>
+
+            <div class="review-item" role="listitem">
+              <div class="review-item__left">
+                <div class="review-item__check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <polyline points="2,7 5.5,10.5 12,3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <span class="review-item__label">Verification &amp; Documents</span>
+              </div>
+              <button class="review-item__edit" onclick="editStage(5)" aria-label="Edit Verification section">Edit</button>
+            </div>
+
+          </div><!-- /review-stages-list -->
+
+          <!-- Application summary -->
+          <div class="review-summary-block reveal" data-delay="2" aria-label="Application summary">
+            <p class="review-summary-block__title">Application Summary</p>
+
+            <div class="summary-grid">
+              <div class="summary-pair">
+                <span class="summary-pair__key">Full Name</span>
+                <span class="summary-pair__value" id="rv-name">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Profession</span>
+                <span class="summary-pair__value" id="rv-profession">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Location</span>
+                <span class="summary-pair__value" id="rv-location">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Education</span>
+                <span class="summary-pair__value" id="rv-education">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Relationship Goal</span>
+                <span class="summary-pair__value" id="rv-goal">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Lifestyle</span>
+                <span class="summary-pair__value" id="rv-lifestyle">—</span>
+              </div>
+              <div class="summary-pair" style="grid-column: span 2;">
+                <span class="summary-pair__key">Important Partner Qualities</span>
+                <span class="summary-pair__value" id="rv-qualities">—</span>
+              </div>
+              <div class="summary-pair" style="grid-column: span 2;">
+                <span class="summary-pair__key">Non-Negotiable Values</span>
+                <span class="summary-pair__value" id="rv-values">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Preferred Age Range</span>
+                <span class="summary-pair__value" id="rv-ageRange">—</span>
+              </div>
+              <div class="summary-pair">
+                <span class="summary-pair__key">Compatibility Blueprint</span>
+                <span class="summary-pair__value" id="rv-compat">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Privacy statement -->
+          <div class="privacy-panel reveal" data-delay="3" style="margin-bottom: var(--space-8);">
+            <svg class="privacy-panel__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            <div>
+              <p class="privacy-panel__title">Thoughtful introductions, not algorithms.</p>
+              <p class="privacy-panel__text">
+                Your application will be personally reviewed by a dedicated member of our team.
+                We will contact you privately once the initial review is complete.
+              </p>
+            </div>
+          </div>
+
+          <!-- Final actions -->
+          <div class="stage-nav reveal" data-delay="4">
+            <button class="stage-nav__back" onclick="prevStage()" aria-label="Back to Verification">
+              ← BACK
+            </button>
+            <button class="btn btn--primary" id="submitBtn" aria-label="Submit your application">
+              <span class="btn__label">SUBMIT APPLICATION</span>
+              <span class="btn__spinner" aria-hidden="true"></span>
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <!-- Start Over option -->
+          <div style="margin-top: var(--space-8); text-align: right;">
+            <button id="startOverBtn" style="font-size: var(--text-xs); color: var(--color-muted-light); letter-spacing: var(--tracking-wide); text-transform: uppercase; background: none; border: none; cursor: pointer; padding: var(--space-2);"
+              aria-label="Clear all progress and start application from beginning">
+              Start Over
+            </button>
+          </div>
+
+        </div>
+      </section><!-- /stage-6 -->
+
+    </div><!-- /app-content -->
+
+    <!-- ── Journey Strip (bottom of main area) ──────────── -->
+    <div class="journey-strip" aria-label="Your application journey overview">
+      <p class="journey-strip__label">The Journey</p>
+      <p class="journey-strip__tagline">From self to union.</p>
+
+      <div class="journey-steps" role="list">
+        <!-- SVG thread connecting milestones -->
+        <svg class="journey-thread" viewBox="0 0 800 4" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0,2 Q200,2 400,2 Q600,2 800,2"/>
+        </svg>
+
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">1</div>
+          <p class="journey-step__title">You</p>
+          <p class="journey-step__sub">Know yourself</p>
+        </div>
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">2</div>
+          <p class="journey-step__title">Your Match</p>
+          <p class="journey-step__sub">Find your person</p>
+        </div>
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">3</div>
+          <p class="journey-step__title">How You Love</p>
+          <p class="journey-step__sub">Understand your bond</p>
+        </div>
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">4</div>
+          <p class="journey-step__title">Your World</p>
+          <p class="journey-step__sub">Share your world</p>
+        </div>
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">5</div>
+          <p class="journey-step__title">Verification</p>
+          <p class="journey-step__sub">Build trust</p>
+        </div>
+        <div class="journey-step" role="listitem">
+          <div class="journey-step__num" aria-hidden="true">6</div>
+          <p class="journey-step__title">Your Union</p>
+          <p class="journey-step__sub">Begin meaningfully</p>
+        </div>
+      </div>
+
+    </div><!-- /journey-strip -->
+
+  </main><!-- /app-main -->
+
+</div><!-- /app-shell -->
+
+<!-- Scripts — load order matters -->
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/questionnaire.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/application.js"></script>
+
+</body>
+</html>

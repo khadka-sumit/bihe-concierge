@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Bihe Concierge</title>
+  <meta name="description" content="Sign in to access your private Bihe Concierge matchmaking application.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<main class="login-page">
+
+  <!-- ── Left Panel: Cinematic ──────────────────────────── -->
+  <div class="login-panel-left vignette" role="complementary" aria-label="Bihe Concierge welcome">
+
+    <!-- Background image / gradient fallback -->
+    <div class="login-panel-left__bg img-cover img-slow-zoom img-placeholder-dark">
+      <img
+        src="assets/images/hero-entry.webp"
+        alt="Warm candlelit Nepali heritage corridor"
+        loading="eager"
+        onerror="this.style.display='none'"
+      >
+    </div>
+
+    <div class="login-panel-left__vignette" aria-hidden="true"></div>
+
+    <div class="login-panel-left__content">
+
+      <div class="login-panel-left__rule" aria-hidden="true"></div>
+
+      <!-- Logo -->
+      <div class="login-panel-left__logo">
+        <a href="login.html" class="bc-logo" aria-label="Bihe Concierge home">
+          <svg class="bc-logo__ornament" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2 L13.8 8.2 L20 8.2 L14.9 12.1 L16.7 18.3 L12 14.4 L7.3 18.3 L9.1 12.1 L4 8.2 L10.2 8.2 Z" stroke="currentColor" stroke-width="1" fill="none"/>
+          </svg>
+          <span class="bc-logo__name">BIHE</span>
+          <span class="bc-logo__subtitle">CONCIERGE</span>
+        </a>
+      </div>
+
+      <p class="login-panel-left__tagline">
+        Private matchmaking,<br>thoughtfully curated.
+      </p>
+
+      <p class="login-panel-left__sub">
+        A careful, human-led introduction to the person<br>
+        who deserves to know you.
+      </p>
+
+      <blockquote class="login-panel-left__quote">
+        "Every meaningful introduction<br>
+        begins with understanding."
+      </blockquote>
+
+    </div>
+  </div>
+
+  <!-- ── Right Panel: Login Form ────────────────────────── -->
+  <div class="login-panel-right paper-texture">
+    <div class="login-form-wrap">
+
+      <p class="login-welcome label-overline">Welcome Back</p>
+
+      <h1 class="login-heading">Continue your<br>journey.</h1>
+
+      <p class="login-sub">
+        Sign in to access your private<br>
+        Bihe Concierge application.
+      </p>
+
+      <div class="login-ornament" aria-hidden="true">
+        <span></span>
+        <svg viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="2"/></svg>
+        <span></span>
+      </div>
+
+      <form class="login-form" id="loginForm" novalidate aria-label="Sign in form">
+
+        <!-- Email -->
+        <div class="field">
+          <label class="field__label field__label--required" for="loginEmail">
+            Email Address
+          </label>
+          <input
+            class="field__input"
+            type="email"
+            id="loginEmail"
+            name="email"
+            autocomplete="email"
+            spellcheck="false"
+            placeholder="your@email.com"
+            aria-required="true"
+            aria-describedby="emailError"
+          >
+          <span class="field__error" id="emailError" aria-live="polite"></span>
+        </div>
+
+        <!-- Password -->
+        <div class="field">
+          <label class="field__label field__label--required" for="loginPassword">
+            Password
+          </label>
+          <div class="field__input-wrap">
+            <input
+              class="field__input"
+              type="password"
+              id="loginPassword"
+              name="password"
+              autocomplete="current-password"
+              placeholder="At least 6 characters"
+              aria-required="true"
+              aria-describedby="passwordError"
+            >
+            <button
+              type="button"
+              class="field__eye-btn"
+              id="togglePassword"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+              <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </button>
+          </div>
+          <span class="field__error" id="passwordError" aria-live="polite"></span>
+        </div>
+
+        <!-- Extras: remember + forgot -->
+        <div class="login-form__extras">
+          <label class="field__check">
+            <input type="checkbox" id="rememberMe" name="remember">
+            Remember me
+          </label>
+          <a href="#" class="login-form__forgot" tabindex="0">Forgot password?</a>
+        </div>
+
+        <!-- Submit -->
+        <div class="login-form__submit">
+          <button type="submit" class="btn btn--primary btn--full" id="loginBtn" aria-label="Continue to application">
+            <span class="btn__label">CONTINUE</span>
+            <span class="btn__spinner" aria-hidden="true"></span>
+            <span class="btn__arrow" aria-hidden="true">→</span>
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Register link -->
+      <div class="login-register">
+        <p class="login-register__text">
+          New to Bihe Concierge?&nbsp;
+          <a href="application.html" class="login-register__link">Begin your application</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<!-- Scripts -->
+<script src="js/auth.js"></script>
+<script>
+  (function () {
+
+    // ── Password visibility toggle ──────────────────────
+    const toggle = document.getElementById('togglePassword');
+    const pwField = document.getElementById('loginPassword');
+    const eyeIcon = document.getElementById('eyeIcon');
+
+    const eyeOpenPath  = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+    const eyeClosedPath = '<path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>';
+
+    toggle.addEventListener('click', () => {
+      const isPassword = pwField.type === 'password';
+      pwField.type = isPassword ? 'text' : 'password';
+      eyeIcon.innerHTML = isPassword ? eyeClosedPath : eyeOpenPath;
+      toggle.setAttribute('aria-pressed', isPassword ? 'true' : 'false');
+      toggle.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+    });
+
+    // ── Form submission ─────────────────────────────────
+    const form    = document.getElementById('loginForm');
+    const btn     = document.getElementById('loginBtn');
+    const emailEl = document.getElementById('loginEmail');
+    const pwEl    = document.getElementById('loginPassword');
+    const emailErr = document.getElementById('emailError');
+    const pwErr    = document.getElementById('passwordError');
+
+    function showFieldError(field, errEl, msg) {
+      field.classList.add('has-error');
+      errEl.textContent = msg;
+      errEl.setAttribute('role', 'alert');
+    }
+
+    function clearFieldError(field, errEl) {
+      field.classList.remove('has-error');
+      errEl.textContent = '';
+    }
+
+    // Live clear on input
+    emailEl.addEventListener('input', () => clearFieldError(emailEl, emailErr));
+    pwEl.addEventListener('input',    () => clearFieldError(pwEl,    pwErr));
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      clearFieldError(emailEl, emailErr);
+      clearFieldError(pwEl,    pwErr);
+
+      const result = AuthService.login(emailEl.value, pwEl.value);
+
+      if (!result.ok) {
+        if (result.errors.email)    showFieldError(emailEl, emailErr, result.errors.email);
+        if (result.errors.password) showFieldError(pwEl,    pwErr,    result.errors.password);
+        // Focus first errored field
+        if (result.errors.email)         emailEl.focus();
+        else if (result.errors.password) pwEl.focus();
+        return;
+      }
+
+      // Loading state
+      btn.classList.add('btn--loading');
+      btn.setAttribute('aria-busy', 'true');
+
+      // Brief pause for UX polish before redirect
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 900);
+    });
+
+  })();
+</script>
+
+</body>
+</html>

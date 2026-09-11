@@ -1,0 +1,289 @@
+/* ============================================================
+   BIHE CONCIERGE — ANIMATIONS
+   Keyframes, reveal classes, transition utilities.
+   ============================================================ */
+
+/* ── Keyframes ──────────────────────────────────────────── */
+
+@keyframes slowZoom {
+  from { transform: scale(1);     }
+  to   { transform: scale(1.028); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealLine {
+  from { transform: scaleX(0); transform-origin: left center; }
+  to   { transform: scaleX(1); transform-origin: left center; }
+}
+
+/* Red thread SVG draw */
+@keyframes drawThread {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0;   }
+}
+
+/* Subtle pulse on active stage dot */
+@keyframes subtlePulse {
+  0%, 100% { box-shadow: 0 0 0 0   rgba(126, 7, 21, 0.30); }
+  50%       { box-shadow: 0 0 0 6px rgba(126, 7, 21, 0.00); }
+}
+
+/* Spinner for submit loading */
+@keyframes spin {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* Checkmark draw */
+@keyframes drawCheck {
+  from { stroke-dashoffset: 50; }
+  to   { stroke-dashoffset: 0;  }
+}
+
+/* Stage transition sweep */
+@keyframes redSweep {
+  0%   { transform: scaleX(0); opacity: 1; }
+  50%  { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+
+/* Wax seal entrance */
+@keyframes sealReveal {
+  from { transform: scale(0.82) rotate(-8deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* Candlelight flicker (confirmation) */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  30%       { opacity: 0.92; }
+  60%       { opacity: 0.97; }
+  80%       { opacity: 0.88; }
+}
+
+/* ── Reveal utilities (driven by IntersectionObserver) ─── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s var(--ease-luxury),
+    transform 0.7s var(--ease-luxury);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for sibling elements */
+.reveal[data-delay="1"] { transition-delay: 60ms;  }
+.reveal[data-delay="2"] { transition-delay: 120ms; }
+.reveal[data-delay="3"] { transition-delay: 180ms; }
+.reveal[data-delay="4"] { transition-delay: 240ms; }
+.reveal[data-delay="5"] { transition-delay: 300ms; }
+.reveal[data-delay="6"] { transition-delay: 360ms; }
+.reveal[data-delay="7"] { transition-delay: 420ms; }
+.reveal[data-delay="8"] { transition-delay: 480ms; }
+
+/* Left-in variant */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-16px);
+  transition:
+    opacity 0.7s var(--ease-luxury),
+    transform 0.7s var(--ease-luxury);
+}
+.reveal-left.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Headline clip reveal */
+.headline-reveal {
+  overflow: hidden;
+}
+.headline-reveal .line-inner {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.75s var(--ease-luxury);
+}
+.headline-reveal.is-visible .line-inner {
+  transform: translateY(0);
+}
+.headline-reveal .line-inner:nth-child(2) { transition-delay: 80ms; }
+.headline-reveal .line-inner:nth-child(3) { transition-delay: 160ms; }
+.headline-reveal .line-inner:nth-child(4) { transition-delay: 240ms; }
+
+/* ── Stage transition overlay ───────────────────────────── */
+
+.stage-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-wine);
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-in-out);
+}
+
+.stage-overlay.active {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.stage-overlay__quote {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--color-ivory);
+  text-align: center;
+  font-style: italic;
+  line-height: var(--leading-snug);
+  max-width: 480px;
+  padding: 0 var(--space-8);
+}
+
+.stage-overlay__line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-gold);
+  animation: revealLine 0.6s var(--ease-luxury) 0.2s both;
+}
+
+/* ── Questionnaire transitions ──────────────────────────── */
+
+.question-card {
+  transition:
+    opacity 0.38s var(--ease-in-out),
+    transform 0.38s var(--ease-in-out);
+}
+
+.question-card.is-exiting {
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+}
+
+.question-card.is-entering {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* ── Entry screen specific ──────────────────────────────── */
+
+.entry-headline {
+  animation: fadeUp 1s var(--ease-luxury) 0.4s both;
+}
+
+.entry-cta {
+  animation: fadeUp 0.8s var(--ease-luxury) 0.9s both;
+}
+
+.entry-footer {
+  animation: fadeIn 0.8s var(--ease-luxury) 1.3s both;
+}
+
+/* Red line sweep on entry exit */
+.entry-sweep-line {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--color-burgundy);
+  transform: scaleX(0);
+  transform-origin: left center;
+  z-index: var(--z-top);
+  pointer-events: none;
+}
+
+.entry-sweep-line.sweep-active {
+  animation: redSweep 0.7s var(--ease-luxury) forwards;
+}
+
+/* ── Reduced motion support ─────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+  /* Kill all transitions/animations */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .img-slow-zoom img {
+    animation: none;
+  }
+
+  .reveal,
+  .reveal-left {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .headline-reveal .line-inner {
+    transform: translateY(0);
+    transition: none;
+  }
+
+  .entry-headline,
+  .entry-cta,
+  .entry-footer {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+}

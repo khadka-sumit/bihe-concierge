@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60" fill="none" class="red-thread">
+  <!--
+    Animated red ceremonial thread motif.
+    Use .red-thread path with stroke-dasharray/stroke-dashoffset for draw animation.
+    CSS class "is-visible" triggers the animation.
+  -->
+  <style>
+    .red-thread path {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .red-thread.is-visible path {
+      stroke-dashoffset: 0;
+    }
+  </style>
+
+  <!-- Main flowing thread curve -->
+  <path
+    d="M0,30 C30,20 60,40 90,30 C120,20 150,40 180,30 C210,20 240,40 270,30 C300,20 330,40 360,30 C380,23 392,28 400,30"
+    stroke="#7E0715"
+    stroke-width="1.2"
+    stroke-linecap="round"
+    opacity="0.75"
+  />
+
+  <!-- Subtle shadow thread (slightly offset) -->
+  <path
+    d="M0,32 C30,22 60,42 90,32 C120,22 150,42 180,32 C210,22 240,42 270,32 C300,22 330,42 360,32 C380,25 392,30 400,32"
+    stroke="#580710"
+    stroke-width="0.6"
+    stroke-linecap="round"
+    opacity="0.35"
+  />
+
+  <!-- Small accent knots / dots along the thread -->
+  <g fill="#A30E1D" opacity="0.6">
+    <circle cx="90"  cy="30" r="2.5"/>
+    <circle cx="180" cy="30" r="2.5"/>
+    <circle cx="270" cy="30" r="2.5"/>
+    <circle cx="360" cy="30" r="2.5"/>
+  </g>
+</svg>
