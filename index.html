@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -106,13 +106,14 @@
     /* Main headline */
     .entry-headline {
       font-family: var(--font-serif);
-      font-size: var(--text-5xl);
-      font-weight: 300;
+      font-size: clamp(2.6rem, 5.8vw, 4.8rem);
+      font-weight: 600;
       font-style: italic;
-      color: var(--color-ivory);
+      color: #FFFDF9;
       line-height: var(--leading-snug);
-      letter-spacing: var(--tracking-tight);
+      letter-spacing: -0.015em;
       margin-bottom: var(--space-12);
+      text-shadow: 0 4px 24px rgba(126, 7, 21, 0.45);
     }
 
     /* Separator below headline */
@@ -300,13 +301,13 @@
 
     <!-- Main headline -->
     <h1 class="entry-headline headline-reveal" id="entryHeadline">
-      <span class="line-inner">Every great love story</span>
-      <span class="line-inner">begins with knowing</span>
-      <span class="line-inner">yourself.</span>
+      <span class="line-inner">Every lifelong union</span>
+      <span class="line-inner">begins with two souls</span>
+      <span class="line-inner">ready for forever.</span>
     </h1>
 
     <div class="entry-sep" aria-hidden="true">
-      <span></span>
+      <span>✦</span>
     </div>
 
     <!-- CTA -->
@@ -314,13 +315,16 @@
       <button
         class="entry-cta-btn"
         id="readyBtn"
-        aria-label="Begin your application journey"
+        aria-label="Begin your sacred matrimonial journey"
+        style="border-color: rgba(185, 149, 90, 0.6); background: rgba(126, 7, 21, 0.25);"
       >
-        I'M READY
+        ENTER YOUR JOURNEY
         <span class="entry-cta-arrow" aria-hidden="true">→</span>
       </button>
 
-      <p class="entry-footer-label entry-footer">Begin your journey</p>
+      <p class="entry-footer-label entry-footer" style="color: rgba(246, 240, 231, 0.6); font-weight: 500;">
+        A thoughtful voyage from self to lifelong marriage
+      </p>
     </div>
 
   </div>

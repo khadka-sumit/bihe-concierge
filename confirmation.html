@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -126,14 +126,15 @@
     /* Headline */
     .confirmation-headline {
       font-family: var(--font-serif);
-      font-size: var(--text-5xl);
-      font-weight: 300;
+      font-size: clamp(2.4rem, 5.2vw, 4.2rem);
+      font-weight: 600;
       font-style: italic;
-      color: var(--color-ivory);
+      color: #FFFDF9;
       line-height: var(--leading-snug);
-      letter-spacing: var(--tracking-tight);
+      letter-spacing: -0.015em;
       margin-bottom: var(--space-6);
       animation: fadeUp 0.9s var(--ease-luxury) 0.8s both;
+      text-shadow: 0 4px 20px rgba(126, 7, 21, 0.4);
     }
 
     /* Subheading */
