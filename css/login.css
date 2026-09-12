@@ -142,19 +142,30 @@
 .login-welcome {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
   color: var(--color-burgundy);
   margin-bottom: var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.login-welcome::after {
+  content: '✦';
+  font-size: 8px;
+  color: var(--color-gold);
 }
 
 .login-heading {
   font-family: var(--font-serif);
-  font-size: var(--text-4xl);
+  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-weight: 600;
   line-height: var(--leading-tight);
   color: var(--color-text);
   margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
 }
 
 .login-sub {

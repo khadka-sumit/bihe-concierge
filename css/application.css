@@ -333,10 +333,12 @@
 
 .question-text {
   font-family: var(--font-serif);
-  font-size: var(--text-3xl);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 600;
   line-height: var(--leading-snug);
-  color: var(--color-text);
+  color: var(--color-wine);
   margin-bottom: var(--space-8);
+  letter-spacing: -0.015em;
 }
 
 /* Option buttons for questionnaire */
@@ -350,13 +352,15 @@
 .q-option {
   text-align: left;
   padding: var(--space-5) var(--space-6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: #FEFCF9;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: #FFFDFB;
   font-family: var(--font-serif);
-  font-size: var(--text-xl);
-  color: var(--color-muted);
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  color: var(--color-text);
   cursor: pointer;
+  position: relative;
   transition:
     border-color var(--duration-fast) var(--ease-in-out),
     color var(--duration-fast) var(--ease-in-out),
@@ -366,17 +370,20 @@
 }
 
 .q-option:hover {
-  border-color: rgba(126, 7, 21, 0.30);
-  color: var(--color-text);
-  background: rgba(126, 7, 21, 0.02);
-  transform: translateX(4px);
+  border-color: var(--color-burgundy);
+  color: var(--color-burgundy);
+  background: rgba(126, 7, 21, 0.03);
+  transform: translateX(6px);
+  box-shadow: 0 4px 14px rgba(126, 7, 21, 0.08);
 }
 
 .q-option.is-selected {
-  background: rgba(126, 7, 21, 0.05);
+  background: linear-gradient(135deg, rgba(126, 7, 21, 0.08) 0%, rgba(163, 14, 29, 0.04) 100%);
   border-color: var(--color-burgundy);
   color: var(--color-burgundy);
-  box-shadow: 0 0 0 1px rgba(126, 7, 21, 0.12);
+  font-weight: 700;
+  box-shadow: 0 0 0 2px rgba(126, 7, 21, 0.20), 0 4px 16px rgba(126, 7, 21, 0.12);
+  transform: translateX(4px);
 }
 
 /* Questionnaire nav buttons */
