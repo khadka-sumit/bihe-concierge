@@ -268,16 +268,44 @@ const QuestionnaireEngine = (() => {
       setTimeout(() => {
         if (questionCardEl) questionCardEl.style.display = 'none';
         completionEl.classList.remove('hidden');
+        completionEl.style.display = 'block';
+        completionEl.style.opacity = '1';
         completionEl.style.animation = 'fadeUp 0.8s var(--ease-luxury) both';
       }, 400);
     }
   }
 
-  /** Check if all questions are answered */
-  function isComplete() {
-    return questions.every(q => applicationData.compatibility[q.id] !== '');
+  /** Refresh questionnaire view if stage becomes visible */
+  function refresh() {
+    if (!questionCardEl || !questionTextEl) return;
+    if (isComplete()) {
+      showCompletion();
+    } else {
+      if (completionEl) {
+        completionEl.classList.add('hidden');
+        completionEl.style.display = 'none';
+      }
+      if (questionCardEl) {
+        questionCardEl.style.display = 'block';
+        questionCardEl.classList.remove('is-exiting');
+        questionCardEl.style.opacity = '1';
+        questionCardEl.style.transform = 'none';
+      }
+      if (nextBtn) nextBtn.style.display = '';
+      if (backBtn) backBtn.style.display = '';
+      currentIndex = findFirstUnanswered();
+      renderQuestion(currentIndex, false);
+      updateNav();
+    }
   }
 
-  return { init, next, back, isComplete };
+  /** Check if all questions are answered */
+  function isComplete() {
+    return questions.every(q => applicationData.compatibility && applicationData.compatibility[q.id]);
+  }
+
+  const engineApi = { init, next, back, isComplete, refresh };
+  window.QuestionnaireEngine = engineApi;
+  return engineApi;
 
 })();

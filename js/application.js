@@ -87,12 +87,13 @@
   function goToStage(stageNum, animate, useOverlay) {
     if (stageNum < 1 || stageNum > TOTAL_STAGES || isTransitioning) return;
 
-    // For questionnaire stage, check if it's complete before skipping
-    if (stageNum > 3 && !QuestionnaireEngine.isComplete()) {
-      // Allow backward navigation always
-      if (stageNum > currentStage) {
-        stageNum = 3;
-      }
+    // Safety: ensure questionnaire state is initialized if navigating to or through Stage 3
+    if (stageNum === 3) {
+      setTimeout(() => {
+        if (window.QuestionnaireEngine && typeof window.QuestionnaireEngine.refresh === 'function') {
+          window.QuestionnaireEngine.refresh();
+        }
+      }, 50);
     }
 
     if (useOverlay && stageOverlay) {
@@ -102,7 +103,7 @@
         stageOverlay.classList.remove('is-active');
         _doGoToStage(stageNum, animate);
         isTransitioning = false;
-      }, 900);
+      }, 750);
     } else {
       _doGoToStage(stageNum, animate);
     }
@@ -204,11 +205,8 @@
     sidebarStepEls().forEach((el, i) => {
       const stageNum = i + 1;
       el.addEventListener('click', () => {
-        // Only allow navigating to completed or current stages
-        if (stageNum <= currentStage) {
-          syncStageData(currentStage);
-          goToStage(stageNum, true, false);
-        }
+        syncStageData(currentStage);
+        goToStage(stageNum, true, false);
       });
       el.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') el.click();

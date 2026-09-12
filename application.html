@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/variables.css">
@@ -25,10 +25,10 @@
 <!-- Stage atmosphere overlay (shows between Stage 2 → 3) -->
 <div class="stage-overlay" id="stageOverlay" aria-hidden="true" role="status">
   <div class="stage-overlay__ornament"></div>
-  <p class="stage-overlay__quote">
-    "Understanding the connection<br>beneath the details."
+  <p class="stage-overlay__quote" style="font-weight: 600;">
+    "Beyond preferences lies the sacred melody<br>of how two hearts truly love."
   </p>
-  <p class="stage-overlay__sub">Compatibility Blueprint</p>
+  <p class="stage-overlay__sub" style="letter-spacing: 0.2em; color: var(--color-gold);">Compatibility Blueprint · Bihe Concierge</p>
 </div>
 
 <!-- Page exit overlay -->
@@ -38,22 +38,21 @@
 <div class="modal-backdrop" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
   <div class="modal">
     <div class="modal__ornament" aria-hidden="true">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin: 0 auto; display:block;">
-        <circle cx="16" cy="16" r="15" stroke="var(--color-burgundy)" stroke-width="1" opacity="0.4"/>
-        <path d="M10 16l4 4 8-8" stroke="var(--color-burgundy)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg width="40" height="40" viewBox="0 0 32 32" fill="none" style="margin: 0 auto; display:block;">
+        <circle cx="16" cy="16" r="15" stroke="var(--color-burgundy)" stroke-width="1.5" opacity="0.6"/>
+        <path d="M10 16l4 4 8-8" stroke="var(--color-burgundy)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-    <h2 class="modal__title" id="modalTitle">Ready to begin?</h2>
-    <p class="modal__body">
-      Once submitted, your application will move to<br>
-      personal review by our team.
+    <h2 class="modal__title" id="modalTitle" style="font-weight: 600; color: var(--color-wine);">Ready to begin your journey?</h2>
+    <p class="modal__body" style="font-size: var(--text-base); color: var(--color-text);">
+      Once submitted, your application enters our private sanctuary of review, where our dedicated relationship consultants will begin curating your path to finding your life partner.
     </p>
     <div class="modal__actions">
       <button class="btn btn--primary" id="confirmSubmitBtn">
-        <span class="btn__label">SUBMIT APPLICATION</span>
+        <span class="btn__label">SUBMIT MY SACRED APPLICATION</span>
         <span class="btn__spinner" aria-hidden="true"></span>
       </button>
-      <button class="btn btn--ghost" id="cancelSubmitBtn">Not Yet</button>
+      <button class="btn btn--ghost" id="cancelSubmitBtn">Return &amp; Review</button>
     </div>
   </div>
 </div>
@@ -228,10 +227,10 @@
                 About You
               </h1>
               <p class="stage-heading__subtitle">
-                Tell us about the person we'll have<br>the privilege of getting to know.
+                Tell us about the beautiful person we'll have<br>the privilege of introducing to their life partner.
               </p>
               <p class="stage-heading__support">
-                A few details help us understand who you are beyond the profile.
+                Every profound marriage begins with honest truth, vulnerability, and self-understanding.
               </p>
             </div>
 
@@ -397,10 +396,10 @@
             <div class="stage-heading reveal">
               <span class="stage-heading__number">02</span>
               <h2 class="stage-heading__title" id="s2-title">
-                Your Ideal<br>Partner
+                Your Ideal<br>Life Partner
               </h2>
               <p class="stage-heading__subtitle">
-                Help us understand the kind of partnership<br>you hope to build.
+                Help us envision the kindred spirit and sacred companion<br>with whom you wish to build a home and lifetime of memories.
               </p>
             </div>
 
@@ -586,9 +585,14 @@
               <button class="stage-nav__back" id="qBackBtn" aria-label="Previous question" style="visibility: hidden;">
                 ← BACK
               </button>
-              <button class="btn btn--primary" id="qNextBtn" disabled aria-label="Next question">
-                NEXT →
-              </button>
+              <div style="display: flex; align-items: center; gap: var(--space-4);">
+                <button type="button" onclick="nextStage()" style="background: none; border: none; font-family: var(--font-sans); font-size: var(--text-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-burgundy); cursor: pointer; text-decoration: underline;">
+                  Proceed To Your World →
+                </button>
+                <button class="btn btn--primary" id="qNextBtn" disabled aria-label="Next question">
+                  NEXT →
+                </button>
+              </div>
             </div>
 
             <!-- Completion moment (hidden until done) -->
@@ -649,10 +653,10 @@
             <div class="stage-heading reveal">
               <span class="stage-heading__number">04</span>
               <h2 class="stage-heading__title" id="s4-title">
-                Your World
+                Your World &amp; Family
               </h2>
               <p class="stage-heading__subtitle">
-                Help us understand the world you've built<br>and the life you envision.
+                A marriage is the sacred union of two worlds, two families,<br>and two futures woven into a shared path.
               </p>
             </div>
 
@@ -1125,8 +1129,8 @@
 
     <!-- ── Journey Strip (bottom of main area) ──────────── -->
     <div class="journey-strip" aria-label="Your application journey overview">
-      <p class="journey-strip__label">The Journey</p>
-      <p class="journey-strip__tagline">From self to union.</p>
+      <p class="journey-strip__label" style="letter-spacing: 0.2em; color: var(--color-gold);">The Sacred Journey</p>
+      <p class="journey-strip__tagline" style="font-weight: 600;">From self to union — two destinies intertwined.</p>
 
       <div class="journey-steps" role="list">
         <!-- SVG thread connecting milestones -->
@@ -1142,7 +1146,7 @@
         <div class="journey-step" role="listitem">
           <div class="journey-step__num" aria-hidden="true">2</div>
           <p class="journey-step__title">Your Match</p>
-          <p class="journey-step__sub">Find your person</p>
+          <p class="journey-step__sub">Envision your partner</p>
         </div>
         <div class="journey-step" role="listitem">
           <div class="journey-step__num" aria-hidden="true">3</div>
@@ -1152,17 +1156,17 @@
         <div class="journey-step" role="listitem">
           <div class="journey-step__num" aria-hidden="true">4</div>
           <p class="journey-step__title">Your World</p>
-          <p class="journey-step__sub">Share your world</p>
+          <p class="journey-step__sub">Bring families together</p>
         </div>
         <div class="journey-step" role="listitem">
           <div class="journey-step__num" aria-hidden="true">5</div>
           <p class="journey-step__title">Verification</p>
-          <p class="journey-step__sub">Build trust</p>
+          <p class="journey-step__sub">Build mutual trust</p>
         </div>
         <div class="journey-step" role="listitem">
           <div class="journey-step__num" aria-hidden="true">6</div>
           <p class="journey-step__title">Your Union</p>
-          <p class="journey-step__sub">Begin meaningfully</p>
+          <p class="journey-step__sub">Begin lifelong marriage</p>
         </div>
       </div>
 

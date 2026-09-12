@@ -98,14 +98,14 @@ const Validator = (() => {
 
   /**
    * Stage 3 is validated question-by-question inside questionnaire.js.
-   * This function is a no-op passthrough (all 10 must be answered).
    */
   function validateStage3() {
-    const answered = Object.values(applicationData.compatibility).every(v => v !== '');
-    if (!answered) {
+    // If completed or at least answered questions, allow stage advance
+    const answeredCount = Object.values(applicationData.compatibility || {}).filter(Boolean).length;
+    if (answeredCount === 0) {
       const errEl = document.getElementById('q-error');
       if (errEl) {
-        errEl.textContent = 'Please answer all questions before continuing.';
+        errEl.textContent = 'Please choose an answer to proceed with your blueprint.';
         errEl.setAttribute('role', 'alert');
       }
       return false;
