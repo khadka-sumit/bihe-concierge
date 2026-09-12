@@ -36,13 +36,16 @@
   // ── Initialization ──────────────────────────────────────
 
   function init() {
-    // Restore stage from storage
+    // Restore stage from storage (but always start from Stage 1 if it's 0/undefined)
     const restored = loadFromLocal();
-    if (restored && applicationData.meta.currentStage) {
+    if (restored && applicationData.meta.currentStage && applicationData.meta.currentStage > 0) {
       currentStage = applicationData.meta.currentStage;
+    } else {
+      currentStage = 1;
     }
 
-    showStage(currentStage, false);
+    // Show initial stage WITHOUT animation (direct DOM)
+    _doGoToStage(currentStage, false);
     bindSidebarClicks();
     bindFormSync();
     restoreFormValues();
@@ -87,15 +90,6 @@
   function goToStage(stageNum, animate, useOverlay) {
     if (stageNum < 1 || stageNum > TOTAL_STAGES || isTransitioning) return;
 
-    // Safety: ensure questionnaire state is initialized if navigating to or through Stage 3
-    if (stageNum === 3) {
-      setTimeout(() => {
-        if (window.QuestionnaireEngine && typeof window.QuestionnaireEngine.refresh === 'function') {
-          window.QuestionnaireEngine.refresh();
-        }
-      }, 50);
-    }
-
     if (useOverlay && stageOverlay) {
       isTransitioning = true;
       stageOverlay.classList.add('is-active');
@@ -139,6 +133,15 @@
           setTimeout(() => AnimationController.staggerFormFields(targetEl, 80), 50);
           AnimationController.observeRevealEls(targetEl);
         }
+
+        // Questionnaire refresh AFTER stage is in DOM
+        if (stageNum === 3) {
+          setTimeout(() => {
+            if (window.QuestionnaireEngine && typeof window.QuestionnaireEngine.refresh === 'function') {
+              window.QuestionnaireEngine.refresh();
+            }
+          }, 100);
+        }
       }
 
       currentStage = stageNum;
@@ -158,9 +161,17 @@
 
     // Validate current stage first
     if (!Validator.validateStage(currentStage)) {
-      // Scroll to first error
-      const firstError = document.querySelector(`#stage-${currentStage} .has-error`);
-      if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Scroll to the first errored field so the user can see it
+      const stageEl = document.getElementById(`stage-${currentStage}`);
+      const firstError = stageEl ? stageEl.querySelector('.has-error') : null;
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        firstError.focus({ preventScroll: true });
+      } else {
+        // Scroll to the banner if no individual error found
+        const banner = document.getElementById(`stage-${currentStage}-alert`);
+        if (banner) banner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
       return;
     }
 
